@@ -1,6 +1,6 @@
 cask "hywep-checker" do
-  version "2.0.0"
-  sha256 "26a8a306fd1a4f26dfd17759217f2994e4f681eaf34a95d537d7fd331a8eaa58"
+  version "2.2.0"
+  sha256 "5bd2f4b2c705d0ff1f94561ca64c64141d943995a16d5762e57dd9bf473c4e86"
 
   url "https://github.com/anrqkdrnl/hywep-checker/releases/download/v#{version}/HywepChecker.zip"
   name "HY-WEP 체커"
@@ -18,13 +18,14 @@ cask "hywep-checker" do
         must_succeed: false
   end
 
-  uninstall launchctl: "com.seongsu.hywepchecker.auto",
-            quit:      "com.seongsu.hywepchecker"
+  # 자동 실행(LaunchAgent)은 업데이트 때 지우지 않음: 앱이 삭제되면 스스로 등록을 정리함
+  uninstall quit: "com.seongsu.hywepchecker"
 
-  zap trash: [
-    "~/Library/Application Support/HY-WEP 체커",
-    "~/Library/Preferences/com.seongsu.hywepchecker.plist",
-  ]
+  zap launchctl: "com.seongsu.hywepchecker.auto",
+      trash:     [
+        "~/Library/Application Support/HY-WEP 체커",
+        "~/Library/Preferences/com.seongsu.hywepchecker.plist",
+      ]
 
   caveats <<~EOS
     처음 실행하면 설정 마법사가 열립니다.

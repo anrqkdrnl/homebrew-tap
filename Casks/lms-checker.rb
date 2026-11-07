@@ -1,6 +1,6 @@
 cask "lms-checker" do
-  version "2.0.0"
-  sha256 "0c537be434a747b3497213478cf74845c8c3e981aabda8f1ec538993b4609dd9"
+  version "2.1.0"
+  sha256 "ec55070bc77e068d145eac0c864d6ff276bd16f47f5f700f17a98e036ec952dd"
 
   url "https://github.com/anrqkdrnl/hyu-lms-checker/releases/download/v#{version}/LMSChecker.zip"
   name "LMS 체커"
@@ -18,13 +18,14 @@ cask "lms-checker" do
         must_succeed: false
   end
 
-  uninstall launchctl: "com.seongsu.lmschecker.auto",
-            quit:      "com.seongsu.lmschecker"
+  # 자동 실행(LaunchAgent)은 업데이트 때 지우지 않음: 앱이 삭제되면 스스로 등록을 정리함
+  uninstall quit: "com.seongsu.lmschecker"
 
-  zap trash: [
-    "~/Library/Application Support/LMS 체커",
-    "~/Library/Preferences/com.seongsu.lmschecker.plist",
-  ]
+  zap launchctl: "com.seongsu.lmschecker.auto",
+      trash:     [
+        "~/Library/Application Support/LMS 체커",
+        "~/Library/Preferences/com.seongsu.lmschecker.plist",
+      ]
 
   caveats <<~EOS
     처음 실행하면 설정 마법사가 열립니다.
