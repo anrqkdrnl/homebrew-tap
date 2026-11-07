@@ -1,6 +1,6 @@
 cask "lms-checker" do
-  version "2.1.1"
-  sha256 "b8130e411a68040c3de7cbbd6e5c7e3bd2a39b5e198f40d8f364ca43acffbae5"
+  version "2.2.0"
+  sha256 "cfd27cfc44c5b1523e776787184990f9d584fc0b9420b8809cbfdf9aa0b0ae8d"
 
   url "https://github.com/anrqkdrnl/hyu-lms-checker/releases/download/v#{version}/LMSChecker.zip"
   name "LMS 체커"
@@ -19,12 +19,12 @@ cask "lms-checker" do
   end
 
   # 자동 실행(LaunchAgent)은 업데이트 때 지우지 않음: 앱이 삭제되면 스스로 등록을 정리함
-  uninstall quit: "com.seongsu.lmschecker"
+  uninstall quit: "io.github.anrqkdrnl.lmschecker"
 
-  zap launchctl: "com.seongsu.lmschecker.auto",
+  zap launchctl: "io.github.anrqkdrnl.lmschecker.auto",
       trash:     [
         "~/Library/Application Support/LMS 체커",
-        "~/Library/Preferences/com.seongsu.lmschecker.plist",
+        "~/Library/Preferences/io.github.anrqkdrnl.lmschecker.plist",
       ]
 
   caveats <<~EOS

@@ -1,6 +1,6 @@
 cask "hywep-checker" do
-  version "2.3.0"
-  sha256 "01e646604290be99569daccddc1f91a8c92fcd8f4342e846fa7f0f7177916238"
+  version "2.4.0"
+  sha256 "37aa410efcc981256d2d198a460b8c313cead8bc5e5d3d06447134c96f8811f0"
 
   url "https://github.com/anrqkdrnl/hywep-checker/releases/download/v#{version}/HywepChecker.zip"
   name "HY-WEP 체커"
@@ -19,12 +19,12 @@ cask "hywep-checker" do
   end
 
   # 자동 실행(LaunchAgent)은 업데이트 때 지우지 않음: 앱이 삭제되면 스스로 등록을 정리함
-  uninstall quit: "com.seongsu.hywepchecker"
+  uninstall quit: "io.github.anrqkdrnl.hywepchecker"
 
-  zap launchctl: "com.seongsu.hywepchecker.auto",
+  zap launchctl: "io.github.anrqkdrnl.hywepchecker.auto",
       trash:     [
         "~/Library/Application Support/HY-WEP 체커",
-        "~/Library/Preferences/com.seongsu.hywepchecker.plist",
+        "~/Library/Preferences/io.github.anrqkdrnl.hywepchecker.plist",
       ]
 
   caveats <<~EOS
