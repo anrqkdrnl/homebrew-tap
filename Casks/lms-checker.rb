@@ -7,20 +7,19 @@ cask "lms-checker" do
   desc "Hanyang LMS unfinished lectures and assignments checker"
   homepage "https://github.com/anrqkdrnl/hyu-lms-checker"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "LMS 체커.app"
 
   # 애플 공증을 받지 않은 앱이라 Gatekeeper 격리 속성을 제거합니다.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/LMS 체커.app"],
-                   must_succeed: false
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:         ["-dr", "com.apple.quarantine", "{{appdir}}/LMS 체커.app"],
+        must_succeed: false
   end
 
   uninstall launchctl: "com.seongsu.lmschecker.auto",
-            quit:      "com.seongsu.lmschecker",
-            delete:    "~/Library/LaunchAgents/com.seongsu.lmschecker.auto.plist"
+            quit:      "com.seongsu.lmschecker"
 
   zap trash: [
     "~/Library/Application Support/LMS 체커",

@@ -7,20 +7,19 @@ cask "hywep-checker" do
   desc "Hanyang HY-WEP new internship posting checker"
   homepage "https://github.com/anrqkdrnl/hywep-checker"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "HY-WEP 체커.app"
 
   # 애플 공증을 받지 않은 앱이라 Gatekeeper 격리 속성을 제거합니다.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/HY-WEP 체커.app"],
-                   must_succeed: false
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:         ["-dr", "com.apple.quarantine", "{{appdir}}/HY-WEP 체커.app"],
+        must_succeed: false
   end
 
   uninstall launchctl: "com.seongsu.hywepchecker.auto",
-            quit:      "com.seongsu.hywepchecker",
-            delete:    "~/Library/LaunchAgents/com.seongsu.hywepchecker.auto.plist"
+            quit:      "com.seongsu.hywepchecker"
 
   zap trash: [
     "~/Library/Application Support/HY-WEP 체커",
