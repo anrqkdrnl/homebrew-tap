@@ -1,6 +1,6 @@
 cask "lms-checker" do
-  version "2.2.0"
-  sha256 "cfd27cfc44c5b1523e776787184990f9d584fc0b9420b8809cbfdf9aa0b0ae8d"
+  version "2.2.1"
+  sha256 "8b2f3e731f6ac6eeaa3d17026e4bd86517a38c811a2fa065699f288cc54fe580"
 
   url "https://github.com/anrqkdrnl/hyu-lms-checker/releases/download/v#{version}/LMSChecker.zip"
   name "LMS 체커"
