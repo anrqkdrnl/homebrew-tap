@@ -1,6 +1,6 @@
 cask "hywep-checker" do
-  version "2.4.1"
-  sha256 "cda0ec875f603ce980a9f1bdf87a8ede692dedd35be92f039de0e06214801812"
+  version "2.5.0"
+  sha256 "bab9f5940e10b4ba2ce70b7b226612d94a432c46a26e0d35d5d87fb6daf57791"
 
   url "https://github.com/anrqkdrnl/hywep-checker/releases/download/v#{version}/HywepChecker.zip"
   name "HY-WEP 체커"
